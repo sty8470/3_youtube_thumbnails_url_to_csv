@@ -1,14 +1,12 @@
 from selenium.webdriver.common.keys import Keys
 from selenium import webdriver
 from selenium.webdriver.common.by import By
-from selenium.webdriver.chrome.service import Service
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
 from webdriver_manager.chrome import ChromeDriverManager
 from PyQt5.QtWidgets import *
+from selenium.webdriver.chrome.service import Service as ChromeService
+from subprocess import CREATE_NO_WINDOW
 from bs4 import BeautifulSoup
 import time
-import urllib
 import random
 import re
 import pandas as pd
@@ -37,7 +35,12 @@ class YCrawler():
     
     # 초기 드라이버 세팅하기
     def set_init_driver(self, chrome_options):
-        chrome_options.add_argument('headless')
+        # chrome_options.add_argument('--headless')
+        # chrome_options.add_experimental_option('excludeSwitches', ['enable-logging'])
+        # chrome_options.add_experimental_option("excludeSwitches", ["enable-automation"])
+        # chrome_options.add_experimental_option("useAutomationExtension", False)
+        # chrome_service = ChromeService('chromedriver')
+        # chrome_service.creationflags = CREATE_NO_WINDOW
         self.driver = webdriver.Chrome(ChromeDriverManager().install(), options=chrome_options)
         time.sleep(1)
     # 유투브 이미지 사이트 로딩하기
